@@ -20,7 +20,8 @@ class StringConstants {
   static const String doNotHaveAnAccount = 'Don\'t have an account?';
   static const String iHaveAlreadyAccount = 'I have already account';
   static const String selectImage = 'Select image';
-  static const String chooseImageFromTheOptionsBelow = 'Choose image from the options below';
+  static const String chooseImageFromTheOptionsBelow =
+      'Choose image from the options below';
   static const String camera = 'Camera';
   static const String gallery = 'Gallery';
   static const String chooseYourBike = 'Choose Your Bike';
@@ -41,11 +42,12 @@ class StringConstants {
   static const String deliveryAddress = 'Delivery Address';
   static const String orderHistory = 'Order History';
   static const String reels = 'Reels(Videos)';
-  static const String  settings = 'Settings';
+  static const String settings = 'Settings';
   static const String notifications = 'Notifications';
   static const String help = 'Help';
   static const String favoriteProducts = 'Favorite Products';
-  static const String favoriteProductsNotAvailable = 'Favorite Products not available....';
+  static const String favoriteProductsNotAvailable =
+      'Favorite Products not available....';
   static const String update = 'Update';
   static const String addNewAddress = 'Add new address';
   static const String selectAddressType = 'Select address type';
@@ -54,16 +56,8 @@ class StringConstants {
   static const String city = 'City';
   static const String pinCode = 'PinCode';
   static const String state = 'State';
+  static const String searchHere = "Search Here";
 
-
-
-
-
-
-
-
-
-
-
-  static const String test = 'The LR01 uses the same design as the most iconic bikes from PEUGEOT Cycles\' 130-year history and combines it with agile, dynamic performance that\'s perfectly suited to navigating today\'s cities. As well as a lugged steel frame and iconic PEUGEOT black-and-white chequer design, this city bike also features a 16-speed Shimano Claris drivetrain.';
+  static const String test =
+      'The LR01 uses the same design as the most iconic bikes from PEUGEOT Cycles\' 130-year history and combines it with agile, dynamic performance that\'s perfectly suited to navigating today\'s cities. As well as a lugged steel frame and iconic PEUGEOT black-and-white chequer design, this city bike also features a 16-speed Shimano Claris drivetrain.';
 }

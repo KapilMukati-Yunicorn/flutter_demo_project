@@ -16,3 +16,11 @@ class ClickOnProductItem extends BiCycleEvent {
   @override
   List<Object?> get props => [product];
 }
+
+class SearchProduct extends BiCycleEvent {
+  final String query;
+  const SearchProduct(this.query);
+
+  @override
+  List<Object?> get props => [query];
+}

@@ -24,9 +24,7 @@ class MyApp extends StatelessWidget {
         // BlocProvider<SplashBloc>(
         //   create: (_) => SplashBloc(),
         // ),
-        BlocProvider<BottomNavBloc>(
-          create: (_) => BottomNavBloc(),
-        ),
+        BlocProvider<BottomNavBloc>(create: (_) => BottomNavBloc()),
         BlocProvider(create: (_) => CartBloc()),
         BlocProvider(create: (_) => PersonBloc()),
         BlocProvider(create: (_) => FavoriteBloc()),
@@ -37,20 +35,19 @@ class MyApp extends StatelessWidget {
         designSize: const Size(375, 812), // iPhone 11 as design reference
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context,child){
+        builder: (context, child) {
           return MaterialApp(
             title: 'Bloc Project',
             navigatorKey: NavigationService.navigatorKey,
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.light,
-            initialRoute: '/bottom_nav',//     /bottom_nav
+            initialRoute: '/bottom_nav', //     /bottom_nav
             onGenerateRoute: AppRoutes.onGenerateRoute,
             debugShowCheckedModeBanner: false,
           );
         },
-      )
+      ),
     );
   }
 }
-

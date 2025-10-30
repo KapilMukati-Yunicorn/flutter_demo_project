@@ -22,14 +22,14 @@ import '../constants/icons_constant.dart';
 import '../constants/image_constants.dart';
 import '../constants/string_constants.dart';
 
-
 class CommonWidgets {
-  static appBar(
-      {String? title,
-      bool wantBackButton = true,
-      bool centerTitle = true,
-      bool showColorBackButton = false,
-      List<Widget>? actions}) {
+  static appBar({
+    String? title,
+    bool wantBackButton = true,
+    bool centerTitle = true,
+    bool showColorBackButton = false,
+    List<Widget>? actions,
+  }) {
     return AppBar(
       elevation: 0,
       shadowColor: AppColors.appBarColor,
@@ -43,7 +43,7 @@ class CommonWidgets {
                 NavigationService.pop();
               },
               child: Padding(
-                padding:  EdgeInsets.only(left: 8.w),
+                padding: EdgeInsets.only(left: 8.w),
                 child: Center(
                   child: appIcons(
                     assetName: IconConstants.icBack,
@@ -55,11 +55,8 @@ class CommonWidgets {
               ),
             )
           : null,
-      centerTitle:centerTitle?? true,
-      title: Text(
-        title ?? '',
-        style: AppTextStyle.titleStyle20bw,
-      ),
+      centerTitle: centerTitle ?? true,
+      title: Text(title ?? '', style: AppTextStyle.titleStyle20bw),
       actions: actions,
     );
   }
@@ -75,107 +72,112 @@ class CommonWidgets {
     bool showLoading = false,
     required VoidCallback onPressed,
     Widget? child,
-    required BuildContext context
-      }){
+    required BuildContext context,
+  }) {
     return Container(
       height: height ?? 50.h,
       width: width ?? 50.h,
       margin: buttonMargin,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-            borderRadius ?? 8.r),
+        borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
         gradient: LinearGradient(
-            colors: [Color(0xFF34C8E8),Color(0xFF4E4AF2)]),
+          colors: [Color(0xFF34C8E8), Color(0xFF4E4AF2)],
+        ),
       ),
       clipBehavior: Clip.hardEdge,
       child: Container(
-
-        decoration:
-            BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                  borderRadius ?? 9.r),
-              border:  GradientBoxBorder(
-                gradient: LinearGradient(
-                    begin:Alignment.topLeft ,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFFFFFFFF).withOpacity(0.5),Color(0xFF000000).withOpacity(0.5)]),
-                width: 3.w,
-              ),
-               ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius ?? 9.r),
+          border: GradientBoxBorder(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFFFFFFFF).withOpacity(0.5),
+                Color(0xFF000000).withOpacity(0.5),
+              ],
+            ),
+            width: 3.w,
+          ),
+        ),
         clipBehavior: Clip.hardEdge,
         child: showLoading
             ? Center(
-              child: const CircularProgressIndicator(
-                color: AppColors.white,
-              ),
-            )
+                child: const CircularProgressIndicator(color: AppColors.white),
+              )
             : GestureDetector(
-          onTap: onPressed,
-          child: Container(
-              height: height ?? 50.h,
-              width: width ?? 50.h,
-              alignment: Alignment.center,
-              child: child),
-        ),
+                onTap: onPressed,
+                child: Container(
+                  height: height ?? 50.h,
+                  width: width ?? 50.h,
+                  alignment: Alignment.center,
+                  child: child,
+                ),
+              ),
       ),
     );
-}
+  }
 
   ///For Full Size Use In Column Not In ROW
-  static Widget commonElevatedButton(
-      {Key? buttonKey,
-        Key? loadingKey,
-      double? height,
-      double? width,
-      EdgeInsetsGeometry? buttonMargin,
-      EdgeInsetsGeometry? contentPadding,
-      double? borderRadius,
-      Color? splashColor,
-      bool showLoading = false,
-      Color? buttonColor,
-      TextStyle? textStyle,
-      double? elevation,
-      required VoidCallback onPressed,
-      Widget? child,
-      Decoration? decoration,
-      BoxBorder? border,
-      required BuildContext context}) {
+  static Widget commonElevatedButton({
+    Key? buttonKey,
+    Key? loadingKey,
+    double? height,
+    double? width,
+    EdgeInsetsGeometry? buttonMargin,
+    EdgeInsetsGeometry? contentPadding,
+    double? borderRadius,
+    Color? splashColor,
+    bool showLoading = false,
+    Color? buttonColor,
+    TextStyle? textStyle,
+    double? elevation,
+    required VoidCallback onPressed,
+    Widget? child,
+    Decoration? decoration,
+    BoxBorder? border,
+    required BuildContext context,
+  }) {
     return Container(
       height: height ?? 60.h,
       width: width ?? double.infinity,
       margin: buttonMargin,
       alignment: Alignment.center,
-      decoration: decoration ??
+      decoration:
+          decoration ??
           BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                  borderRadius ?? 8.r),
-              color: buttonColor ?? AppColors.primary),
+            borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
+            color: buttonColor ?? AppColors.primary,
+          ),
       clipBehavior: Clip.hardEdge,
       child: showLoading
           ? Container(
               key: loadingKey,
               alignment: Alignment.center,
-              decoration: decoration ??
+              decoration:
+                  decoration ??
                   BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: buttonColor ?? AppColors.primary),
-              child: const CircularProgressIndicator(
-                color: AppColors.white,
-              ),
+                    borderRadius: BorderRadius.circular(8.r),
+                    color: buttonColor ?? AppColors.primary,
+                  ),
+              child: const CircularProgressIndicator(color: AppColors.white),
             )
           : GestureDetector(
               key: buttonKey,
               onTap: onPressed,
               child: Container(
-                  height: height ?? 60.h,
-                  width: width ?? double.infinity,
-                  alignment: Alignment.center,
-                  decoration: decoration ??
-                      BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          color: buttonColor ?? AppColors.primary),
-                  child: child),
+                height: height ?? 60.h,
+                width: width ?? double.infinity,
+                alignment: Alignment.center,
+                decoration:
+                    decoration ??
+                    BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      color: buttonColor ?? AppColors.primary,
+                    ),
+                child: child,
+              ),
             ),
     );
   }
@@ -206,12 +208,12 @@ class CommonWidgets {
         margin: buttonMargin,
         alignment: Alignment.center,
         decoration: kGradientBoxDecoration(
-            borderRadius: borderRadius, showGradientBorder: true),
+          borderRadius: borderRadius,
+          showGradientBorder: true,
+        ),
         child: isLoading
             ? const Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primary,
-                ),
+                child: CircularProgressIndicator(color: AppColors.primary),
               )
             : child ?? const Text(''),
       ),
@@ -239,13 +241,12 @@ class CommonWidgets {
             return Container(
               height: height ?? 64.h,
               width: width ?? double.infinity,
-              color:
-                  Theme.of(context).colorScheme.onSecondary.withOpacity(.2),
+              color: Theme.of(context).colorScheme.onSecondary.withOpacity(.2),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(radius ?? 8.r),
                 child: defaultNetworkImage != null
                     ? imageView(image: defaultNetworkImage)
-                    : Icon(Icons.error, color:AppColors.primary),
+                    : Icon(Icons.error, color: AppColors.primary),
               ),
             );
           },
@@ -254,16 +255,14 @@ class CommonWidgets {
               height: height ?? 64.h,
               width: width ?? double.infinity,
               child: Shimmer.fromColors(
-                baseColor: Theme.of(context)
-                    .colorScheme
-                    .onSecondary
-                    .withOpacity(.4),
+                baseColor: Theme.of(
+                  context,
+                ).colorScheme.onSecondary.withOpacity(.4),
                 highlightColor: Theme.of(context).colorScheme.onSecondary,
                 child: Container(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSecondary
-                      .withOpacity(.4),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSecondary.withOpacity(.4),
                 ),
               ),
             );
@@ -274,15 +273,14 @@ class CommonWidgets {
   }
 
   static Widget dataNotFound() {
-    return Center(
-      child: Image.asset(ImageConstants.imageNoDataFound),
-    );
+    return Center(child: Image.asset(ImageConstants.imageNoDataFound));
   }
 
-  static BoxDecoration kGradientBoxDecoration(
-      {double? borderRadius,
-      bool showGradientBorder = false,
-      Color? defaultColor}) {
+  static BoxDecoration kGradientBoxDecoration({
+    double? borderRadius,
+    bool showGradientBorder = false,
+    Color? defaultColor,
+  }) {
     return BoxDecoration(
       gradient: showGradientBorder
           ? LinearGradient(
@@ -294,116 +292,120 @@ class CommonWidgets {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             )
-          : LinearGradient(colors: [
-              defaultColor ?? Colors.grey,
-              defaultColor ?? Colors.grey
-            ]),
+          : LinearGradient(
+              colors: [
+                defaultColor ?? Colors.grey,
+                defaultColor ?? Colors.grey,
+              ],
+            ),
       borderRadius: BorderRadius.circular(borderRadius ?? 15.r),
     );
   }
 
-  static Widget appIcons(
-      {required String assetName,
-      double? width,
-      double? height,
-      double? borderRadius,
-      Color? color,
-      BoxFit? fit}) {
+  static Widget appIcons({
+    required String assetName,
+    double? width,
+    double? height,
+    double? borderRadius,
+    Color? color,
+    BoxFit? fit,
+    VoidCallback? onTap,
+  }) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius ?? 4.r),
-      child: Image.asset(
-        assetName==''?IconConstants.icMinus:assetName,
-        height: height ?? 24.h,
-        width: width ?? 24.w,
-        color: color,
-        fit: fit ?? BoxFit.fill,
-        errorBuilder: (context, error, stackTrace) {
-          return SizedBox(
-            height: height ?? 24.h,
-            width: width ?? 24.w,
-          );
-        },
+      child: GestureDetector(
+        onTap: onTap,
+        child: Image.asset(
+          assetName == '' ? IconConstants.icMinus : assetName,
+          height: height ?? 24.h,
+          width: width ?? 24.w,
+          color: color,
+          fit: fit ?? BoxFit.fill,
+          errorBuilder: (context, error, stackTrace) {
+            return SizedBox(height: height ?? 24.h, width: width ?? 24.w);
+          },
+        ),
       ),
     );
   }
 
-
-  static Widget verticalSpace({double? height}){
-    return SizedBox(
-      height: height??10.h,
-    );
-  }
-  static Widget horizontalSpace({double? width}){
-    return SizedBox(
-      width: width??10.w,
-    );
+  static Widget verticalSpace({double? height}) {
+    return SizedBox(height: height ?? 10.h);
   }
 
-  static Widget customProgressBar(
-      {required bool inAsyncCall,
-      double? width,
-      Widget? child,
-      Color? backgroundColor,
-      bool overlapped = false,
-      double? height}) {
+  static Widget horizontalSpace({double? width}) {
+    return SizedBox(width: width ?? 10.w);
+  }
+
+  static Widget customProgressBar({
+    required bool inAsyncCall,
+    double? width,
+    Widget? child,
+    Color? backgroundColor,
+    bool overlapped = false,
+    double? height,
+  }) {
     return Container(
       height: height ?? double.infinity,
       width: width ?? double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: inAsyncCall ? backgroundColor ?? backgroundColor : backgroundColor,
+        color: inAsyncCall
+            ? backgroundColor ?? backgroundColor
+            : backgroundColor,
       ),
       clipBehavior: Clip.hardEdge,
       child: inAsyncCall
           ? overlapped
-              ? Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        const CircularProgressIndicator(
-                          color: AppColors.primary,
-                        ),
-                        appIcons(
+                ? Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          const CircularProgressIndicator(
+                            color: AppColors.primary,
+                          ),
+                          appIcons(
                             assetName: IconConstants.icLogo,
                             width: 30.w,
                             height: 30.h,
-                            fit: BoxFit.fill)
-                      ],
-                    ),
-                    Opacity(opacity: 0.3, child: child ?? const SizedBox()),
-                  ],
-                )
-              : Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    const CircularProgressIndicator(
-                      color: AppColors.primary,
-                    ),
-                    appIcons(
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      ),
+                      Opacity(opacity: 0.3, child: child ?? const SizedBox()),
+                    ],
+                  )
+                : Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const CircularProgressIndicator(color: AppColors.primary),
+                      appIcons(
                         assetName: IconConstants.icLogo,
                         width: 30.w,
                         height: 30.h,
-                        fit: BoxFit.fill)
-                  ],
-                )
+                        fit: BoxFit.fill,
+                      ),
+                    ],
+                  )
           : child ?? const SizedBox(),
     );
   }
 
-  static InputDecoration inputDecoration(
-      {String? hintText,
-      String? labelText,
-      String? errorText,
-      EdgeInsetsGeometry? contentPadding,
-      Color? fillColor,
-      TextStyle? hintStyle,
-      TextStyle? labelStyle,
-      TextStyle? errorStyle,
-      Widget? suffixIcon,
-      Widget? prefixIcon,
-      bool? filled}) {
+  static InputDecoration inputDecoration({
+    String? hintText,
+    String? labelText,
+    String? errorText,
+    EdgeInsetsGeometry? contentPadding,
+    Color? fillColor,
+    TextStyle? hintStyle,
+    TextStyle? labelStyle,
+    TextStyle? errorStyle,
+    Widget? suffixIcon,
+    Widget? prefixIcon,
+    bool? filled,
+  }) {
     return InputDecoration(
       errorText: errorText,
       counterText: '',
@@ -428,8 +430,7 @@ class CommonWidgets {
 
   static border({Color? color}) {
     return OutlineInputBorder(
-      borderSide: BorderSide(
-          color: color ??AppColors.primary, width: 2.w),
+      borderSide: BorderSide(color: color ?? AppColors.primary, width: 2.w),
       borderRadius: BorderRadius.circular(14.r),
     );
   }
@@ -438,9 +439,7 @@ class CommonWidgets {
     return GradientText(
       text ?? '',
       gradientDirection: GradientDirection.ltr,
-      style: TextStyle(
-        fontSize: fontSize ?? 16.0.sp,
-      ),
+      style: TextStyle(fontSize: fontSize ?? 16.0.sp),
       colors: [
         const Color(0xffFF4292),
         const Color(0xffFF4292).withOpacity(0.7),
@@ -449,46 +448,47 @@ class CommonWidgets {
     );
   }
 
-  static Widget commonTextField(
-      {Key? key,
-      double? elevation,
-      String? hintText,
-      String? labelText,
-      String? errorText,
-      EdgeInsetsGeometry? contentPadding,
-      TextEditingController? controller,
-      int? maxLines,
-      double? cursorHeight,
-      double? horizontalPadding,
-      double? prefixIconHorizontal,
-      bool wantBorder = false,
-      ValueChanged<String>? onChanged,
-      FormFieldValidator<String>? validator,
-      Color? fillColor,
-      Color? initialBorderColor,
-      double? initialBorderWidth,
-      TextInputType? keyboardType,
-      double? borderRadius,
-      double? maxHeight,
-      TextStyle? hintStyle,
-      TextStyle? style,
-      TextStyle? labelStyle,
-      TextStyle? errorStyle,
-      List<TextInputFormatter>? inputFormatters,
-      TextCapitalization textCapitalization = TextCapitalization.none,
-      bool autofocus = false,
-      bool readOnly = false,
-      bool hintTextColor = false,
-      Widget? suffixIcon,
-      Widget? prefixIcon,
-      AutovalidateMode? autoValidateMode,
-      int? maxLength,
-      GestureTapCallback? onTap,
-      bool obscureText = false,
-      FocusNode? focusNode,
-      Decoration? decoration,
-      bool? filled,
-      bool isCard = false}) {
+  static Widget commonTextField({
+    Key? key,
+    double? elevation,
+    String? hintText,
+    String? labelText,
+    String? errorText,
+    EdgeInsetsGeometry? contentPadding,
+    TextEditingController? controller,
+    int? maxLines,
+    double? cursorHeight,
+    double? horizontalPadding,
+    double? prefixIconHorizontal,
+    bool wantBorder = false,
+    ValueChanged<String>? onChanged,
+    FormFieldValidator<String>? validator,
+    Color? fillColor,
+    Color? initialBorderColor,
+    double? initialBorderWidth,
+    TextInputType? keyboardType,
+    double? borderRadius,
+    double? maxHeight,
+    TextStyle? hintStyle,
+    TextStyle? style,
+    TextStyle? labelStyle,
+    TextStyle? errorStyle,
+    List<TextInputFormatter>? inputFormatters,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    bool autofocus = false,
+    bool readOnly = false,
+    bool hintTextColor = false,
+    Widget? suffixIcon,
+    Widget? prefixIcon,
+    AutovalidateMode? autoValidateMode,
+    int? maxLength,
+    GestureTapCallback? onTap,
+    bool obscureText = false,
+    FocusNode? focusNode,
+    Decoration? decoration,
+    bool? filled,
+    bool isCard = false,
+  }) {
     return Padding(
       padding: contentPadding ?? EdgeInsets.symmetric(vertical: 5.h),
       child: Column(
@@ -496,31 +496,31 @@ class CommonWidgets {
         children: [
           Text(
             labelText ?? '',
-            style: labelStyle ??
-                AppTextStyle.titleStyle14w,
+            style: labelStyle ?? AppTextStyle.titleStyle14w,
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 1.5.w, vertical: 5.h),
             //  padding: EdgeInsets.only(bottom: 5.px),
-            decoration: decoration ??
+            decoration:
+                decoration ??
                 BoxDecoration(
-                    color: fillColor ?? AppColors.white.withOpacity(0.12),
-                    borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
-                    border: Border.all(
-                        color: isCard
-                            ? AppColors.primary
-                            : AppColors.white,
-                        width: 1.w)),
+                  color: fillColor ?? AppColors.white.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
+                  border: Border.all(
+                    color: isCard ? AppColors.primary : AppColors.white,
+                    width: 1.w,
+                  ),
+                ),
             child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: horizontalPadding ?? 16.h),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding ?? 16.h,
+              ),
               child: Row(
                 children: [
                   prefixIcon ?? const SizedBox(),
                   Flexible(
                     child: Padding(
-                      padding:
-                          EdgeInsets.only(left: 3.w, top: 9.h, right: 3.w),
+                      padding: EdgeInsets.only(left: 3.w, top: 9.h, right: 3.w),
                       child: TextFormField(
                         key: key,
                         focusNode: focusNode,
@@ -530,9 +530,12 @@ class CommonWidgets {
                         maxLength: maxLength,
                         cursorHeight: cursorHeight,
                         cursorColor: AppColors.primary,
-                        autovalidateMode: autoValidateMode ?? AutovalidateMode.onUserInteraction,
+                        autovalidateMode:
+                            autoValidateMode ??
+                            AutovalidateMode.onUserInteraction,
                         controller: controller,
-                        onChanged: onChanged ??
+                        onChanged:
+                            onChanged ??
                             (value) {
                               value = value.trim();
                               if (value.isEmpty ||
@@ -543,9 +546,11 @@ class CommonWidgets {
                         validator: validator,
                         keyboardType:
                             defaultTargetPlatform == TargetPlatform.iOS
-                                ? const TextInputType.numberWithOptions(
-                                    decimal: true, signed: true)
-                                : keyboardType ?? TextInputType.text,
+                            ? const TextInputType.numberWithOptions(
+                                decimal: true,
+                                signed: true,
+                              )
+                            : keyboardType ?? TextInputType.text,
                         readOnly: readOnly,
                         autofocus: autofocus,
                         inputFormatters: inputFormatters,
@@ -554,12 +559,11 @@ class CommonWidgets {
                         decoration: InputDecoration(
                           errorText: errorText,
                           counterText: '',
-                          errorStyle: errorStyle ??
-                              AppTextStyle.titleStyleError(),
+                          errorStyle:
+                              errorStyle ?? AppTextStyle.titleStyleError(),
                           hintText: hintText,
                           hintStyle: hintStyle ?? AppTextStyle.titleStyle12w,
-                          fillColor:
-                              fillColor ?? AppColors.primary,
+                          fillColor: fillColor ?? AppColors.primary,
                           filled: filled ?? false,
                           contentPadding:
                               contentPadding ?? EdgeInsets.only(bottom: 14.h),
@@ -582,51 +586,38 @@ class CommonWidgets {
     );
   }
 
-  static countryCodePicker(
-      {ValueChanged<CountryCode>? onChanged, String? initialSelection}) {
+  static countryCodePicker({
+    ValueChanged<CountryCode>? onChanged,
+    String? initialSelection,
+  }) {
     return CountryCodePicker(
       boxDecoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(
-          color: AppColors.primary,
-          width: 8.w,
-        ),
+        border: Border.all(color: AppColors.primary, width: 8.w),
       ),
       searchDecoration: InputDecoration(
         contentPadding: EdgeInsets.zero,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
-          borderSide: BorderSide(
-            width: 8.w,
-            color:AppColors.primary,
-          ),
+          borderSide: BorderSide(width: 8.w, color: AppColors.primary),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
-          borderSide: BorderSide(
-            width: 8.w,
-            color: AppColors.primary,
-          ),
+          borderSide: BorderSide(width: 8.w, color: AppColors.primary),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
-          borderSide: BorderSide(
-            width: 8.w,
-            color: AppColors.primary,
-          ),
+          borderSide: BorderSide(width: 8.w, color: AppColors.primary),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
-          borderSide: BorderSide(
-            width: 8.w,
-            color: AppColors.errorColor,
-          ),
+          borderSide: BorderSide(width: 8.w, color: AppColors.errorColor),
         ),
       ),
       padding: EdgeInsets.zero,
       showFlagMain: true,
       hideMainText: true,
-      flagWidth:24.w ,
+      flagWidth: 24.w,
       onChanged: onChanged,
       initialSelection: initialSelection ?? 'IN',
       showCountryOnly: true,
@@ -636,7 +627,6 @@ class CommonWidgets {
       textStyle: AppTextStyle.titleStyle14bb,
     );
   }
-
 
   static Widget commonOtpView({
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceEvenly,
@@ -664,61 +654,63 @@ class CommonWidgets {
     Color? activeFillColor,
     Color? selectedColor,
     Color? selectedFillColor,
-  }) =>
-      PinCodeTextField(
-        length: length,
-        mainAxisAlignment: mainAxisAlignment,
-        hintCharacter:'●',
-        hintStyle:AppTextStyle.titleStyle20bb ,
-        //obscureText: true,
-        appContext:NavigationService.navigatorKey.currentContext!,
-        cursorColor: AppColors.primary,
-        autoFocus: autoFocus,
-        keyboardType: keyboardType,
+  }) => PinCodeTextField(
+    length: length,
+    mainAxisAlignment: mainAxisAlignment,
+    hintCharacter: '●',
+    hintStyle: AppTextStyle.titleStyle20bb,
+    //obscureText: true,
+    appContext: NavigationService.navigatorKey.currentContext!,
+    cursorColor: AppColors.primary,
+    autoFocus: autoFocus,
+    keyboardType: keyboardType,
 
-        inputFormatters: inputFormatters ??
-            <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-        readOnly: readOnly,
-        textStyle: textStyle ?? AppTextStyle.titleStyle20bb,
-        autoDisposeControllers: false,
-        enabled: true,
-        animationType: AnimationType.fade,
-        pinTheme: PinTheme(
-          inactiveColor: Colors.grey.withOpacity(0.8),
-          inactiveFillColor: Colors.transparent,
-          activeColor: Colors.grey.withOpacity(0.8),
-          activeFillColor: Colors.transparent,
-          selectedColor: AppColors.primary,
-          selectedFillColor: Colors.transparent,
-          shape: shape ?? PinCodeFieldShape.underline,
-          fieldWidth: width ?? 45.w,
-          fieldHeight: height ?? 45.h,
-          borderWidth: borderWidth ?? 5.w,
-          borderRadius: BorderRadius.circular(borderRadius ?? 3.r),
-        ),
-        enableActiveFill: enableActiveFill,
-        controller: controller,
-        onChanged: onChanged,
-        enablePinAutofill: enablePinAutofill,
-        onCompleted: onCompleted,
-        autoDismissKeyboard: autoDismissKeyboard,
-      );
+    inputFormatters:
+        inputFormatters ??
+        <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+    readOnly: readOnly,
+    textStyle: textStyle ?? AppTextStyle.titleStyle20bb,
+    autoDisposeControllers: false,
+    enabled: true,
+    animationType: AnimationType.fade,
+    pinTheme: PinTheme(
+      inactiveColor: Colors.grey.withOpacity(0.8),
+      inactiveFillColor: Colors.transparent,
+      activeColor: Colors.grey.withOpacity(0.8),
+      activeFillColor: Colors.transparent,
+      selectedColor: AppColors.primary,
+      selectedFillColor: Colors.transparent,
+      shape: shape ?? PinCodeFieldShape.underline,
+      fieldWidth: width ?? 45.w,
+      fieldHeight: height ?? 45.h,
+      borderWidth: borderWidth ?? 5.w,
+      borderRadius: BorderRadius.circular(borderRadius ?? 3.r),
+    ),
+    enableActiveFill: enableActiveFill,
+    controller: controller,
+    onChanged: onChanged,
+    enablePinAutofill: enablePinAutofill,
+    onCompleted: onCompleted,
+    autoDismissKeyboard: autoDismissKeyboard,
+  );
 
   static Widget profileStackWidget({
     required List<String> profileImageUrls,
     double avatarSize = 50.0,
     double spacing = 10.0,
   }) {
-    List<Widget> stackLayers =
-        List<Widget>.generate(profileImageUrls.length, (index) {
+    List<Widget> stackLayers = List<Widget>.generate(profileImageUrls.length, (
+      index,
+    ) {
       return Padding(
         padding: EdgeInsets.fromLTRB(index.toDouble() * spacing, 0, 0, 0),
         child: CommonWidgets.imageView(
-            image: profileImageUrls[index],
-            height: avatarSize,
-            width: avatarSize,
-            borderRadius: BorderRadius.circular(avatarSize / 2),
-            defaultNetworkImage: ApiUrlConstants.imageError),
+          image: profileImageUrls[index],
+          height: avatarSize,
+          width: avatarSize,
+          borderRadius: BorderRadius.circular(avatarSize / 2),
+          defaultNetworkImage: ApiUrlConstants.imageError,
+        ),
       );
     });
 
@@ -738,24 +730,29 @@ class CommonWidgets {
     }
   }
 
-  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> snackBarView(
-      {String title = '', bool success = false}) {
+  static ScaffoldFeatureController<SnackBar, SnackBarClosedReason>
+  snackBarView({String title = '', bool success = false}) {
     var snackBar = SnackBar(
-      content: Text(title,
-          style: AppTextStyle.titleStyle14bb),
+      content: Text(title, style: AppTextStyle.titleStyle14bb),
       backgroundColor: success ? Colors.green : Colors.redAccent,
     );
-    return ScaffoldMessenger.of(NavigationService.navigatorKey.currentContext!).showSnackBar(snackBar);
+    return ScaffoldMessenger.of(
+      NavigationService.navigatorKey.currentContext!,
+    ).showSnackBar(snackBar);
   }
 
   ///For Check Post Api Response
-  static Future<bool> responseCheckForPostMethod(
-      {http.Response? response, bool wantSnackBar = true}) async {
+  static Future<bool> responseCheckForPostMethod({
+    http.Response? response,
+    bool wantSnackBar = true,
+  }) async {
     Map<String, dynamic> responseMap = jsonDecode(response?.body ?? "");
     if (wantSnackBar) {
       if (responseMap[ApiKeyConstants.message] != null) {
         snackBarView(
-            title: responseMap[ApiKeyConstants.message], success: true);
+          title: responseMap[ApiKeyConstants.message],
+          success: true,
+        );
       }
       if (responseMap[ApiKeyConstants.error] != null) {
         snackBarView(title: responseMap[ApiKeyConstants.error]);
@@ -786,11 +783,11 @@ class CommonWidgets {
     }
   }
 
-
-  static void showAlertDialog(
-      {String title = StringConstants.logout,
-      String content = StringConstants.wouldYouLikeToLogout,
-      VoidCallback? onPressedYes}) {
+  static void showAlertDialog({
+    String title = StringConstants.logout,
+    String content = StringConstants.wouldYouLikeToLogout,
+    VoidCallback? onPressedYes,
+  }) {
     showCupertinoModalPopup<void>(
       context: NavigationService.navigatorKey.currentContext!,
       builder: (BuildContext context) => CupertinoAlertDialog(
@@ -813,25 +810,30 @@ class CommonWidgets {
   }
 
   static void networkConnectionShowSnackBar() {
-    snackBarView(
-        title: "Check Your Internet Connection", success: false);
+    snackBarView(title: "Check Your Internet Connection", success: false);
   }
 
   static void serverDownShowSnackBar() {
     snackBarView(title: "Server Down", success: false);
   }
 
-  static Widget progressBar(
-      {bool isLoading = false, Widget? child, double? height, double? width}) {
+  static Widget progressBar({
+    bool isLoading = false,
+    Widget? child,
+    double? height,
+    double? width,
+  }) {
     return Container(
       height: height ?? 50.h,
       width: width ?? double.infinity,
       alignment: Alignment.center,
       child: isLoading
           ? Center(
-          child: CircularProgressIndicator(
-              color: AppColors.primary,
-              strokeWidth: 4.w))
+              child: CircularProgressIndicator(
+                color: AppColors.primary,
+                strokeWidth: 4.w,
+              ),
+            )
           : child,
     );
   }

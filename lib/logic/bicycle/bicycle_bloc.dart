@@ -22,5 +22,24 @@ class BiCycleBloc extends Bloc<BiCycleEvent, BiCycleState> {
         arguments: event.product,
       );
     });
+
+    on<SearchProduct>((event, emit) {
+      final filteredList = LocalData.productList.where((product) {
+        final searchTitle = product.title.toLowerCase().contains(event.query!);
+        final searchId = product.id.toString().contains(event.query!);
+        final searchPrice = product.price
+            .toStringAsFixed(2)
+            .contains(event.query!);
+
+        return searchTitle || searchId || searchPrice;
+      });
+
+      emit(
+        BiCycleState(
+          biCycleList: List.from(filteredList),
+          refreshKey: ++_refreshCounter,
+        ),
+      );
+    });
   }
 }
